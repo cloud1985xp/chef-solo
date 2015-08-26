@@ -22,6 +22,29 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     a.vm.network "forwarded_port", guest: 80, host: 9999
   end
 
+  config.vm.define :phpva do |a|
+    a.vm.network "private_network", ip: "192.168.33.41"
+    a.vm.host_name = 'phpva'
+  end
+
+  config.vm.define :bk1 do |a|
+    a.vm.network "forwarded_port", guest: 80, host: 8080
+    a.vm.network "private_network", ip: "192.168.33.51"
+    a.vm.host_name = 'bk1'
+  end
+
+  config.vm.define :bk2 do |a|
+    a.vm.network "forwarded_port", guest: 80, host: 8082
+    a.vm.network "private_network", ip: "192.168.33.52"
+    a.vm.host_name = 'bk2'
+  end
+
+  config.vm.define :ml do |a|
+    a.vm.network "forwarded_port", guest: 80, host: 8089
+    a.vm.network "private_network", ip: "192.168.33.59"
+    a.vm.host_name = 'ml'
+  end
+
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
   # config.ssh.forward_agent = true
