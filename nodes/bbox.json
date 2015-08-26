@@ -1,0 +1,16 @@
+{
+  "run_list": ["recipe[basic_box::default]", "recipe[basic_box::nginx"],
+  "automatic": { "ipaddress": "bk1" },
+  "rbenv": {
+    "install_ruby": ["2.2.2"],
+    "global_ruby": "2.2.2"
+  },
+  "postgresql": {
+    "version": "9.4"
+  },
+  "nginx": {
+    "worker_processes": 8,
+    "worker_connections": 64,
+    "gzip": "off"
+  }
+}
