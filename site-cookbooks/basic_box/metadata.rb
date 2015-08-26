@@ -1,4 +1,4 @@
-name "bk1"
+name "basic_box"
 version "0.1.0"
 
 depends 'build-essential'
