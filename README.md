@@ -10,7 +10,7 @@ bundle install
 berks install
 ```
 
-# Update Vagrantfile
+## Update Vagrantfile
 
 Add the box of the site, for Example:
 
@@ -21,6 +21,14 @@ config.vm.define :zealotv do |a|
   a.vm.host_name = 'zealotv'
 end
 ``` 
+
+Put the SSH Public key to **conf.d/.ssh/id_rsa.pub**
+
+Under this chef-solo directory:
+
+```
+cp ~/.ssh/id_rsa.pub ./conf.d/.ssh/id_rsa.pub
+```
 
 Launch the VirtualBox
 
