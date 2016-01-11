@@ -1,0 +1,24 @@
+<VirtualHost *:80>
+
+  # Admin email, Server Name (domain name) and any aliases
+  ServerAdmin <%= @vhost["server_admin"] || 'webmaster@domain1.com' %>
+  ServerName <%= @vhost["server_name"] %>
+
+
+  # Index file and Document Root (where the public files are located)
+  DirectoryIndex index.php index.html
+  DocumentRoot <%= @vhost.fetch('document_root') %>
+
+  <Directory '<%= @vhost.fetch('document_root') %>'>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+    Require all granted
+  </Directory>
+  # Custom log file locations
+  LogLevel warn
+  # ErrorLog  /home/atk/olivecms/projects/kitaiwan/log/error.log
+  # CustomLog /home/atk/olivecms/projects/kitaiwan/log/access.log combined
+
+</VirtualHost>
