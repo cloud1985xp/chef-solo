@@ -22,11 +22,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     a.vm.network "forwarded_port", guest: 80, host: 9999
   end
 
-  config.vm.define :phpva do |a|
-    a.vm.network "private_network", ip: "192.168.33.41"
-    a.vm.host_name = 'phpva'
-  end
-
   config.vm.define :bk1 do |a|
     a.vm.network "forwarded_port", guest: 80, host: 8080
     a.vm.network "private_network", ip: "192.168.33.51"
