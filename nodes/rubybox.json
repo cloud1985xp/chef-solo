@@ -1,0 +1,33 @@
+{
+  "run_list": ["recipe[rubybox]", "recipe[pg]"],
+  "automatic": { "ipaddress": "rubybox" },
+  "rbenv": {
+    "install_ruby": "2.2.2",
+    "global_ruby": "2.2.2"
+  },
+  "postgresql": {
+    "version": "9.4",
+    "password": {
+      "postgres": "guangdaKB"
+    },
+    "pg_hba": [
+      { "type": "local", "db": "all", "user": "postgres", "addr": null, "method": "ident" },
+      { "type": "host", "db": "all", "user": "postgres", "addr": "127.0.0.1/32", "method": "md5" },
+      { "type": "local", "db": "all", "user": "all", "addr": null, "method": "md5" }
+    ]
+  },
+  "nginx": {
+    "worker_processes": 8,
+    "worker_connections": 64,
+    "gzip": "off"
+  },
+  "authorization": {
+    "sudo": {
+      "groups": [ "admin", "deployer", "vagrant" ]
+    }
+  },
+  "rubybox": {
+    "user": "vagrant",
+    "user_group": "vagrant"
+  }
+}

@@ -22,23 +22,47 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     a.vm.network "forwarded_port", guest: 80, host: 9999
   end
 
+  config.vm.define :rubybox do |a|
+    a.vm.network "forwarded_port", guest: 80, host: 8080
+    a.vm.network "private_network", ip: "192.168.33.60"
+    a.vm.host_name = 'rubybox'
+  end
+
   config.vm.define :bk1 do |a|
     a.vm.network "forwarded_port", guest: 80, host: 8080
     a.vm.network "private_network", ip: "192.168.33.51"
     a.vm.host_name = 'bk1'
   end
 
-  config.vm.define :bk2 do |a|
-    a.vm.network "forwarded_port", guest: 80, host: 8082
-    a.vm.network "private_network", ip: "192.168.33.52"
-    a.vm.host_name = 'bk2'
-  end
+  # config.vm.define :zealotv do |a|
+  #   a.vm.network "forwarded_port", guest: 80, host: 8082
+  #   a.vm.network "private_network", ip: "192.168.33.52"
+  #   a.vm.host_name = 'zealotv'
+  # end
 
-  config.vm.define :ml do |a|
-    a.vm.network "forwarded_port", guest: 80, host: 8089
-    a.vm.network "private_network", ip: "192.168.33.59"
-    a.vm.host_name = 'ml'
-  end
+  # config.vm.define :zealotv do |a|
+  #   a.vm.network "forwarded_port", guest: 80, host: 8082
+  #   a.vm.network "private_network", ip: "192.168.33.52"
+  #   a.vm.host_name = 'zealotv'
+  # end
+
+  # config.vm.define :zealotw do |a|
+  #   a.vm.network "forwarded_port", guest: 80, host: 8083
+  #   a.vm.network "private_network", ip: "192.168.33.54"
+  #   a.vm.host_name = 'zealotw'
+  # end
+
+  # config.vm.define :vhdtw do |a|
+  #   a.vm.network "forwarded_port", guest: 80, host: 8084
+  #   a.vm.network "private_network", ip: "192.168.33.84"
+  #   a.vm.host_name = 'vhdtw'
+  # end
+
+  # config.vm.define :ml do |a|
+  #   a.vm.network "forwarded_port", guest: 80, host: 8089
+  #   a.vm.network "private_network", ip: "192.168.33.59"
+  #   a.vm.host_name = 'ml'
+  # end
 
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
