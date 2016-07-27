@@ -55,6 +55,9 @@ template "#{ENV['HOME']}/.screenrc" do
   group node['current_user']
 end
 
+include_recipe "users::sysadmins"
+include_recipe "sudo::default"
+
 include_recipe "rbenv::default"
 include_recipe "rbenv::ruby_build"
 rbenv_ruby node['rbenv']['install_ruby'] do
@@ -74,8 +77,14 @@ end
 
 include_recipe "redisio::default"
 include_recipe "redisio::enable"
-
 include_recipe "postgresql::client"
+
+directory '/srv' do
+  owner node['rubybox']['user']
+  group node['rubybox']['user_group']
+  mode '0755'
+  action :create
+end
 
 
 # service 'nginx' do
@@ -95,12 +104,12 @@ include_recipe "postgresql::client"
 # end
 
 
-# # directory '/srv' do
-# #   owner node['rbox']['user']
-# #   group node['rbox']['user_group']
-# #   mode '0755'
-# #   action :create
-# # end
+# directory '/srv' do
+#   owner node['rbox']['user']
+#   group node['rbox']['user_group']
+#   mode '0755'
+#   action :create
+# end
 
 # # # projects = {
 # # #   'kitaiwan' => {

@@ -8,6 +8,8 @@ depends 'rbenv'
 depends 'database'
 depends 'postgresql'
 depends 'redisio'
+depends 'users'
+depends 'sudo'
 
 # depends 'mysql', '~> 6.0'
 # depends 'database'

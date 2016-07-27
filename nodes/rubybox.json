@@ -23,11 +23,13 @@
   },
   "authorization": {
     "sudo": {
-      "groups": [ "admin", "deployer", "vagrant" ]
+      "groups": [ "sysadmin", "admin", "deployer", "vagrant" ],
+      "users": ["deployer"],
+      "passwordless": true
     }
   },
   "rubybox": {
-    "user": "vagrant",
-    "user_group": "vagrant"
+    "user": "deployer",
+    "user_group": "deployer"
   }
 }

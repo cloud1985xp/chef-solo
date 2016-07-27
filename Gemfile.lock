@@ -103,6 +103,7 @@ GEM
       chef (>= 10.20)
       erubis (~> 2.7.0)
       net-ssh (>= 2.7, < 4.0)
+    knife-solo_data_bag (1.1.0)
     libyajl2 (1.2.0)
     minitar (0.5.4)
     mixlib-authentication (1.4.1)
@@ -229,6 +230,7 @@ DEPENDENCIES
   kitchen-ssh
   kitchen-vagrant
   knife-solo
+  knife-solo_data_bag
 
 BUNDLED WITH
    1.11.2

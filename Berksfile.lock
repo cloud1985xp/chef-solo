@@ -13,6 +13,8 @@ DEPENDENCIES
   rbenv
   rbenv-install-rubies (~> 0.2.1)
   redisio (~> 2.3.0)
+  sudo
+  users
 
 GRAPH
   7-zip (1.0.2)
@@ -94,7 +96,9 @@ GRAPH
     packagecloud (>= 0.0.0)
   smf (2.2.8)
     rbac (>= 1.0.1)
+  sudo (2.9.0)
   ulimit (0.4.0)
+  users (2.0.3)
   windows (1.43.0)
     chef_handler (>= 0.0.0)
   xml (2.0.0)
