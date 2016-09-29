@@ -7,6 +7,7 @@ DEPENDENCIES
   mysql2_chef_gem (~> 1.0.2)
   nginx
   openssl
+  passenger
   php (~> 1.7.2)
   postgresql (~> 3.4.18)
   rabbitmq (= 3.3.0)
@@ -66,6 +67,7 @@ GRAPH
   openssl (4.4.0)
     chef-sugar (>= 3.1.1)
   packagecloud (0.2.3)
+  passenger (0.0.1)
   php (1.7.2)
     build-essential (>= 0.0.0)
     iis (>= 0.0.0)

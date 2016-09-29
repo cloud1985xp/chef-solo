@@ -1,8 +1,8 @@
 # Base library
+# include_recipe 'build-essential::default'
 # include_recipe "basic_box::default"
-include_recipe 'build-essential::default'
-
 %w(
+    make
     bison
     openssl
     libreadline6
@@ -10,7 +10,7 @@ include_recipe 'build-essential::default'
     zlib1g
     zlib1g-dev
     libssl-dev
-    libyaml-dev 
+    libyaml-dev
     libxml2-dev
     libxslt-dev
     autoconf
@@ -24,6 +24,7 @@ include_recipe 'build-essential::default'
     libaprutil1-dev
     automake
     libtool
+    libpq-dev
     pkg-config
     git
     curl
@@ -33,6 +34,7 @@ include_recipe 'build-essential::default'
     screen
     iotop
     htop
+    imagemagick
   ).each do |p|
   package p
 end
@@ -51,11 +53,11 @@ end
 template "#{ENV['HOME']}/.screenrc" do
   source 'screenrc.erb'
   mode '0600'
-  owner node['current_user']
-  group node['current_user']
+  owner node['rubybox']['user']
+  group node['rubybox']['user']
 end
 
-include_recipe "users::sysadmins"
+# include_recipe "users::sysadmins"
 include_recipe "sudo::default"
 
 include_recipe "rbenv::default"
@@ -71,13 +73,15 @@ end
 
 # Nginx
 include_recipe 'nginx::default'
-nginx_site 'default' do
-  action :disable
-end
+# include_recipe 'nginx::source'
+include_recipe 'nginx::passenger'
+# nginx_site 'default' do
+#   action :disable
+# end
 
 include_recipe "redisio::default"
 include_recipe "redisio::enable"
-include_recipe "postgresql::client"
+# include_recipe "postgresql::client"
 
 directory '/srv' do
   owner node['rubybox']['user']

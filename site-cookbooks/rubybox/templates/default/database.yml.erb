@@ -1,0 +1,8 @@
+<%= @environment %>:
+  adapter: <%= @config['adapter'] %>
+  encoding: <%= @config['encoding'] || 'unicode' %>
+  pool: 50
+  host: <%= @config['host'] %>
+  database: '<%= @config['database'] %>'
+  username: '<%= @config['username'] %>'
+  password: '<%= @config['password'] %>'

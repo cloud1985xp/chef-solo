@@ -1,3 +1,4 @@
+# include_recipe 'build-essential::default'
 include_recipe "postgresql::default"
 include_recipe "postgresql::server"
 include_recipe "database::postgresql"
@@ -15,31 +16,31 @@ include_recipe "postgresql::server_conf"
 #   action :create
 # end
 
-conn = {
-  :host => "127.0.0.1",
-  :port => node['postgresql']['config']['port'],
-  :username => 'postgres',
-  :password => node['postgresql']['password']['postgres']
-}
+# conn = {
+#   :host => "127.0.0.1",
+#   :port => node['postgresql']['config']['port'],
+#   :username => 'postgres',
+#   :password => node['postgresql']['password']['postgres']
+# }
 
-postgresql_database_user 'nexalon' do
-  connection conn
-  password 'guangdaKB'
-  action :create
-end
+# postgresql_database_user 'nexalon' do
+#   connection conn
+#   password '8_#Uc6aZajAk'
+#   action :create
+# end
 
-postgresql_database "nexalon_staging" do
-  connection conn
-  action :create
-end
+# postgresql_database "nexalon_sandbox" do
+#   connection conn
+#   action :create
+# end
 
-postgresql_database_user 'nexalon' do
-  connection conn
-  password 'guangdaKB'
-  action :grant
-  privileges    [:all]
-  database_name 'nexalon_staging'
-end
+# postgresql_database_user 'nexalon' do
+#   connection conn
+#   password '8_#Uc6aZajAk'
+#   action :grant
+#   privileges    [:all]
+#   database_name 'nexalon_sandbox'
+# end
 
 # vhosts = node['nginx']['vhosts'] || [""]
 # vhosts.each do |v|

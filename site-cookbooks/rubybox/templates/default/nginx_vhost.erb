@@ -1,0 +1,22 @@
+server {
+  listen 80;
+  client_max_body_size       10M;
+  client_body_buffer_size    128k;
+  proxy_buffers 8 16k;
+  proxy_buffer_size 32k;
+  passenger_buffers 8 16k;
+  passenger_buffer_size 32k;
+  server_name <%= @vhost['server_name'] %>;
+  root /srv/<%= @identifier %>/current/public;   # <--- be sure to point to 'public'!
+  passenger_enabled on;
+  rack_env <%= @environment %>;
+  # access_log /srv/<%= @identifier %>/shared/log/nginx-access.log;
+  # error_log /srv/<%= @identifier %>/shared/log/nginx-error.log;
+  location ~ ^/(assets)/  {
+    root /srv/<%= @identifier %>/current/public;
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
+  add_header "X-UA-Compatible" "IE=Edge,chrome=1";
+}

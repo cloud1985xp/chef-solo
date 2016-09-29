@@ -20,7 +20,7 @@ config.vm.define :zealotv do |a|
   a.vm.network "private_network", ip: "192.168.33.52"
   a.vm.host_name = 'zealotv'
 end
-``` 
+```
 
 Put the SSH Public key to **conf.d/.ssh/id_rsa.pub**
 
@@ -74,3 +74,15 @@ Add configuration of the node, ex: nodes/zealotv.json
 knife solo prepare zealotv
 knife solo cook zealotv
 ```
+
+## TODO
+
+Install Passenger to existed nginx, followed:
+https://www.phusionpassenger.com/library/install/nginx/install/oss/trusty/
+
+Ref:
+https://supermarket.chef.io/cookbooks/nginx
+https://github.com/jamesotron/cookbooks/blob/master/passenger/recipes/install.rb
+https://coderwall.com/p/r4lv7w/how-to-install-nginx-with-passenger-using-chef
+https://github.com/miketheman/nginx/blob/2.7.x/templates/default/modules/passenger.conf.erb
+https://github.com/miketheman/nginx/blob/2.7.x/recipes/passenger.rb
