@@ -51,6 +51,7 @@ end
 directory "/srv" do
   owner node['rubybox']['user']
   group node['rubybox']['user_group']
+  action :create
 end
 
 node['rubybox']['projects'].each do |identifier, project|
@@ -132,6 +133,12 @@ node['rubybox']['projects'].each do |identifier, project|
   end
 
   nginx_site identifier
+
+  # Install required packages
+
+  Array(project['packages']).each do |p|
+    package p
+  end
 end
 
 # mysql_connection_info = {:host => "127.0.0.1",
