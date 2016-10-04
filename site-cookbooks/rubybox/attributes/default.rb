@@ -1,10 +1,13 @@
 # default['redisio']['package_install'] = true
+# default['apt']['compile_time_update'] = true
 
 default['rubybox']['user'] = 'deployer'
 default['rubybox']['user_group'] = 'deployer'
 default['nginx']['source']['modules'] = [
   "passenger"
 ]
+
+default['build_essential']['compile_time'] = true
 
 default['mysql']['initial_root_password'] = 'mysqlsuperadmin'
 
