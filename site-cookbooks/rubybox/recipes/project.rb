@@ -134,6 +134,14 @@ node['rubybox']['projects'].each do |identifier, project|
 
   nginx_site identifier
 
+  template "/etc/logrotate.d/rails-#{identifier}" do
+    source 'logrotate.erb'
+    mode '0660'
+    owner 'root'
+    group 'root'
+    variables(:identifier => identifier)
+  end
+
   # Install required packages
 
   Array(project['packages']).each do |p|

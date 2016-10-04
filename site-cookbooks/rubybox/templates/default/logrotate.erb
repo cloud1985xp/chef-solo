@@ -1,0 +1,11 @@
+/srv/<%= @identifier %>/current/log/*.log {
+  daily
+  dateext
+  missingok
+  rotate 65535
+  compress
+  delaycompress
+  notifempty
+  copytruncate
+  su deployer deployer
+}
