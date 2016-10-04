@@ -1,6 +1,16 @@
 # Base library
 # include_recipe 'build-essential::default'
 # include_recipe "basic_box::default"
+# include_recipe 'build-essential'
+
+# apt_repository "nginx-passenger" do
+#   uri "https://oss-binaries.phusionpassenger.com/apt/passenger"
+#   distribution node['lsb']['codename']
+#   components ["main"]
+#   keyserver "keyserver.ubuntu.com"
+#   key "561F9B9CAC40B2F7"
+# end
+
 %w(
     make
     bison
@@ -74,7 +84,6 @@ end
 # Nginx
 include_recipe 'nginx::default'
 # include_recipe 'nginx::source'
-include_recipe 'nginx::passenger'
 # nginx_site 'default' do
 #   action :disable
 # end
@@ -82,14 +91,6 @@ include_recipe 'nginx::passenger'
 include_recipe "redisio::default"
 include_recipe "redisio::enable"
 # include_recipe "postgresql::client"
-
-directory '/srv' do
-  owner node['rubybox']['user']
-  group node['rubybox']['user_group']
-  mode '0755'
-  action :create
-end
-
 
 # service 'nginx' do
 #   supports :restart => true, :status => true, :reload => true
