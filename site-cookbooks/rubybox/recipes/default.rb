@@ -92,6 +92,17 @@ include_recipe "redisio::default"
 include_recipe "redisio::enable"
 # include_recipe "postgresql::client"
 
+nginx = node['rubybox']['nginx']
+
+if nginx
+  Array(nginx['htpasswd']).each do |config|
+    htpasswd "/etc/nginx/.htpasswd" do
+      user config['user']
+      password config['password']
+    end
+  end
+end
+
 # service 'nginx' do
 #   supports :restart => true, :status => true, :reload => true
 #   action [:restart]
