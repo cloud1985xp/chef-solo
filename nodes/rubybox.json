@@ -1,14 +1,14 @@
 {
-  "run_list": ["recipe[rubybox]", "recipe[pg]"],
+  "run_list": ["recipe[build-essential]", "recipe[rubybox::default]", "recipe[rubybox::mysql]", "recipe[rubybox::postgresql]", "recipe[rubybox::project]"],
   "automatic": { "ipaddress": "rubybox" },
   "rbenv": {
-    "install_ruby": "2.2.2",
-    "global_ruby": "2.2.2"
+    "install_ruby": "2.3.1",
+    "global_ruby": "2.3.1"
   },
   "postgresql": {
     "version": "9.4",
     "password": {
-      "postgres": "guangdaKB"
+      "postgres": ""
     },
     "pg_hba": [
       { "type": "local", "db": "all", "user": "postgres", "addr": null, "method": "ident" },
@@ -17,10 +17,17 @@
       { "type": "local", "db": "all", "user": "all", "addr": null, "method": "md5" }
     ]
   },
+  "mysql": {
+    "initial_root_password": ""
+  },
   "nginx": {
     "worker_processes": 8,
     "worker_connections": 64,
-    "gzip": "off"
+    "gzip": "off",
+    "passenger": {
+      "install_method": "source",
+      "gem_binary": "/opt/rbenv/shims/gem"
+    }
   },
   "authorization": {
     "sudo": {
@@ -31,6 +38,43 @@
   },
   "rubybox": {
     "user": "deployer",
-    "user_group": "deployer"
+    "user_group": "deployer",
+    "projects": {
+      "foo": {
+        "environment": "staging",
+        "vhost": {
+          "server_name": "foo.com.tw"
+        },
+        "databases": [
+          {
+            "environment": "staging",
+            "adapter": "mysql2",
+            "host": "127.0.0.1",
+            "username": "foo",
+            "database": "foo_staging",
+            "password": "",
+            "encoding": "utf8"
+          }
+        ],
+        "packages": ["ttf-wqy-zenhei"]
+      },
+      "bar": {
+        "environment": "staging",
+        "vhost": {
+          "server_name": "bar.com *.bar.com"
+        },
+        "databases": [
+          {
+            "environment": "staging",
+            "adapter": "postgresql",
+            "host": "127.0.0.1",
+            "username": "bar",
+            "database": "bar_staging",
+            "password": "",
+            "encoding": "unicode"
+          }
+        ]
+      }
+    }
   }
 }
